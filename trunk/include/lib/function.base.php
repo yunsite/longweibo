@@ -5,7 +5,19 @@
  * Date: 12-9-23
  * Time: 下午8:43
  */
+function __autoload($class){
+    $class = strtolower($class);
+    if(file_exists(LONGWEIBO_ROOT.'/include/model/'.$class.'.php')){
+        include_once LONGWEIBO_ROOT.'/include/model'.$class.'.php';
+    }elseif(file_exists(LONGWEIBO_ROOT.'/include/lib/'.$class.'.php')){
+        include_once LONGWEIBO_ROOT.'/include/lib/'.$class.'.php';
+    }elseif(file_exists(LONGWEIBO_ROOT.'/include/controller'.$class.'.php')){
+        include_once LONGWEIBO_ROOT.'/include/controller'.$class.'.php';
+    }else{
+        longMsg($class.'加载失败', LONGWEIBO_URL);
+    }
 
+}
 
 
 /*
@@ -34,6 +46,21 @@ function stripslashesDeep($value){
 function longRedirect($directUrl){
     header("location: $directUrl");
 }
+
+
+/*
+ * 获取站点地址
+ */
+
+function getLongUrl(){
+    $phpself = isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '';
+    if(preg_match("/^.*\//", $phpself, $matches)){
+        return 'http://'. $_SERVER['HTTP_HOST'] .$matches[0];
+    }else{
+        return LONG_URL;
+    }
+}
+
 
 /*
  * 显示错误longMsg
