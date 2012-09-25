@@ -14,9 +14,11 @@ header('content-type:text/html; charset=utf-8');
 define('LONGWEIBO_ROOT', dirname(__FILE__));
 
 include_once LONGWEIBO_ROOT.'/config.php';
-include_once LONGWEIBO_ROOT.'/lib/function.base.php';
+include_once LONGWEIBO_ROOT.'/include/lib/function.base.php';
 
 doStripslashes();
+
+define('TPLS_URL', LONGWEIBO_ROOT.'/content/templates/');
 
 
 
