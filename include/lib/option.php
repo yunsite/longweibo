@@ -20,6 +20,11 @@ class Option{
                 'method' => 'index',
                 'reg' => '#m=index&a=index(&.*)?#',
             ),
+            array(
+                'model' => 'other_controller',
+                'method'=>'go',
+                'reg' => '#m=index&a=go(&.*)?#',
+            ),
         );
         return $routingTable;
     }
