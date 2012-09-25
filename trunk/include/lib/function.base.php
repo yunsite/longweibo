@@ -11,10 +11,10 @@ function __autoload($class){
         include_once LONGWEIBO_ROOT.'/include/model'.$class.'.php';
     }elseif(file_exists(LONGWEIBO_ROOT.'/include/lib/'.$class.'.php')){
         include_once LONGWEIBO_ROOT.'/include/lib/'.$class.'.php';
-    }elseif(file_exists(LONGWEIBO_ROOT.'/include/controller'.$class.'.php')){
-        include_once LONGWEIBO_ROOT.'/include/controller'.$class.'.php';
+    }elseif(file_exists(LONGWEIBO_ROOT.'/include/controller/'.$class.'.php')){
+        include_once LONGWEIBO_ROOT.'/include/controller/'.$class.'.php';
     }else{
-        longMsg($class.'加载失败', LONGWEIBO_URL);
+        longMsg($class.'加载失败', LONGWEIBO_ROOT);
     }
 
 }
@@ -29,7 +29,6 @@ function doStripslashes(){
         $_POST = stripslashesDeep($_POST);
         $_COOKIE = stripslashesDeep($_COOKIE);
         $_REQUEST = stripslashesDeep($_REQUEST);
-
     }
 }
 /*
@@ -60,7 +59,17 @@ function getLongUrl(){
         return LONG_URL;
     }
 }
+/*
+ *  获取客户端ip
+ */
 
+function getIp(){
+    $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+    if(!preg_match("/^\d+\.\d+\.\d+\.\d+$/", $ip)){
+        $ip = '';
+    }
+    return $ip;
+}
 
 /*
  * 显示错误longMsg
