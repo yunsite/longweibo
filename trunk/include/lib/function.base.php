@@ -8,7 +8,7 @@
 function __autoload($class){
     $class = strtolower($class);
     if(file_exists(LONGWEIBO_ROOT.'/include/model/'.$class.'.php')){
-        include_once LONGWEIBO_ROOT.'/include/model'.$class.'.php';
+        include_once LONGWEIBO_ROOT.'/include/model/'.$class.'.php';
     }elseif(file_exists(LONGWEIBO_ROOT.'/include/lib/'.$class.'.php')){
         include_once LONGWEIBO_ROOT.'/include/lib/'.$class.'.php';
     }elseif(file_exists(LONGWEIBO_ROOT.'/include/controller/'.$class.'.php')){

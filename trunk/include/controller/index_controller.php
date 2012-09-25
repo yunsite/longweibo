@@ -11,6 +11,8 @@
  */
 class index_Controller{
     function index(){
-        echo "this";
+        $index_model = new index_model();
+        $write = $index_model->write();
+        echo "this" . $write;
     }
 }
